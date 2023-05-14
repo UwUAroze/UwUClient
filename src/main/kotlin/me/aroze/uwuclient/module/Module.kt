@@ -1,14 +1,18 @@
 package me.aroze.uwuclient.module
 
 import me.aroze.uwuclient.event.EventManager
+import me.aroze.uwuclient.module.setting.Setting
 import net.minecraft.client.Minecraft
 
 open class Module {
 
     val name: String
+    val key: Int
+
     private val description: String
     private val category: ModuleCategory
-    val key: Int
+
+    val settings: ArrayList<Setting> = ArrayList()
 
     var enabled = false
     protected var mc: Minecraft = Minecraft.getMinecraft()

@@ -26,5 +26,6 @@
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" name="minecraft" level="project" />
     <orderEntry type="library" name="natives" level="project" />
+    <orderEntry type="library" name="ArozeUtils" level="project" />
   </component>
 </module>

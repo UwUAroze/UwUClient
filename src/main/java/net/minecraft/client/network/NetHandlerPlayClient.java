@@ -13,6 +13,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 import java.util.Map.Entry;
+
+import me.aroze.uwuclient.event.Event;
+import me.aroze.uwuclient.event.events.EventPacketChat;
 import net.minecraft.block.Block;
 import net.minecraft.client.ClientBrandRetriever;
 import net.minecraft.client.Minecraft;
@@ -746,15 +749,18 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
     public void handleChat(S02PacketChat packetIn)
     {
+        EventPacketChat packetChat = new EventPacketChat(packetIn, packetIn.getChatComponent());
+        packetChat.call();
+
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
 
         if (packetIn.getType() == 2)
         {
-            this.gameController.ingameGUI.setRecordPlaying(packetIn.getChatComponent(), false);
+            this.gameController.ingameGUI.setRecordPlaying(packetChat.getChatComponent(), false);
         }
         else
         {
-            this.gameController.ingameGUI.getChatGUI().printChatMessage(packetIn.getChatComponent());
+            this.gameController.ingameGUI.getChatGUI().printChatMessage(packetChat.getChatComponent());
         }
     }
 

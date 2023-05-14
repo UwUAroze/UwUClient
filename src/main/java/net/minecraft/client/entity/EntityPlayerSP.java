@@ -1,5 +1,6 @@
 package net.minecraft.client.entity;
 
+import me.aroze.uwuclient.event.events.EventPlayerChat;
 import me.aroze.uwuclient.event.events.EventUpdate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
@@ -233,7 +234,10 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
     public void sendChatMessage(String message)
     {
-        this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
+        EventPlayerChat chatMessage = new EventPlayerChat(message);
+        chatMessage.call();
+        if (chatMessage.getCancelled()) return;
+        this.sendQueue.addToSendQueue(new C01PacketChatMessage(chatMessage.getMessage()));
     }
 
     public void swingItem()
