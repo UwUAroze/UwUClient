@@ -3,6 +3,7 @@ package me.aroze.uwuclient.module
 import me.aroze.uwuclient.module.hud.Hud
 import me.aroze.uwuclient.module.modules.misc.UwUChat
 import me.aroze.uwuclient.module.modules.movement.Sprint
+import me.aroze.uwuclient.module.modules.movement.Strafe
 import me.aroze.uwuclient.module.modules.movement.flight.VanillaFlight
 import me.aroze.uwuclient.module.modules.player.NoFall
 
@@ -12,7 +13,7 @@ object ModuleManager {
 
     fun registerModules() {
         register(
-            VanillaFlight, Hud, UwUChat, NoFall, Sprint
+            VanillaFlight, Hud, UwUChat, NoFall, Sprint, Strafe
         )
     }
 
