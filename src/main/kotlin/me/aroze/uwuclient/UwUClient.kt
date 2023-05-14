@@ -18,6 +18,8 @@ class UwUClient {
         lateinit var instance: UwUClient
     }
 
+    // todo: add tits
+
     fun start() {
         instance = this
         println("Starting UwUClient")
