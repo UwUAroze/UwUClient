@@ -8,8 +8,9 @@ object ModuleManager {
     val modules = ArrayList<Module>()
 
     fun registerModules() {
-        register(VanillaFlight)
-        register(Hud)
+        register(
+            VanillaFlight, Hud, UwUChat, NoFall
+        )
     }
 
     fun register(module: Module) = modules.add(module)
