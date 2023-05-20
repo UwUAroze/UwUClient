@@ -153,6 +153,9 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                 }
 
                 float f7 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
+                if (renderManager.livingPlayer == entity) {
+                    f7 = entity.prevRotationPitchHead + (entity.rotationPitchHead - entity.prevRotationPitchHead) * partialTicks;
+                }
                 this.renderLivingAt(entity, x, y, z);
                 float f8 = this.handleRotationFloat(entity, partialTicks);
                 this.rotateCorpse(entity, f8, f, partialTicks);

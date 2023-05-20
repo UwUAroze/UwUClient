@@ -79,7 +79,9 @@ public abstract class EntityLivingBase extends Entity
     public float renderYawOffset;
     public float prevRenderYawOffset;
     public float rotationYawHead;
+    public float rotationPitchHead;
     public float prevRotationYawHead;
+    public float prevRotationPitchHead;
     public float jumpMovementFactor = 0.02F;
     protected EntityPlayer attackingPlayer;
     protected int recentlyHit;
@@ -127,6 +129,7 @@ public abstract class EntityLivingBase extends Entity
         this.randomUnused2 = (float)Math.random() * 12398.0F;
         this.rotationYaw = (float)(Math.random() * Math.PI * 2.0D);
         this.rotationYawHead = this.rotationYaw;
+        this.rotationPitchHead = this.rotationPitch;
         this.stepHeight = 0.6F;
     }
 
@@ -298,6 +301,7 @@ public abstract class EntityLivingBase extends Entity
         this.prevMovedDistance = this.movedDistance;
         this.prevRenderYawOffset = this.renderYawOffset;
         this.prevRotationYawHead = this.rotationYawHead;
+        this.prevRotationPitchHead = this.rotationPitchHead;
         this.prevRotationYaw = this.rotationYaw;
         this.prevRotationPitch = this.rotationPitch;
         this.worldObj.theProfiler.endSection();

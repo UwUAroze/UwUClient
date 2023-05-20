@@ -2,6 +2,7 @@ package me.aroze.uwuclient.module
 
 import me.aroze.uwuclient.module.hud.Hud
 import me.aroze.uwuclient.module.modules.combat.Autoclicker
+import me.aroze.uwuclient.module.modules.combat.KillAura
 import me.aroze.uwuclient.module.modules.misc.UwUChat
 import me.aroze.uwuclient.module.modules.movement.Speed
 import me.aroze.uwuclient.module.modules.movement.Sprint
@@ -15,7 +16,9 @@ object ModuleManager {
 
     fun registerModules() {
         register(
-            VanillaFlight, Hud, UwUChat, NoFall, Sprint, Strafe, Speed, Autoclicker
+            Hud, UwUChat,
+            VanillaFlight, NoFall, Sprint, Strafe, Speed,
+            Autoclicker, KillAura
         )
     }
 
