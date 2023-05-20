@@ -2,6 +2,7 @@ package me.aroze.uwuclient.module
 
 import me.aroze.uwuclient.event.EventManager
 import me.aroze.uwuclient.module.setting.Setting
+import me.aroze.uwuclient.util.TimerMS
 import net.minecraft.client.Minecraft
 
 open class Module {
@@ -16,6 +17,7 @@ open class Module {
 
     var enabled = false
     protected var mc: Minecraft = Minecraft.getMinecraft()
+    protected var timer: TimerMS = TimerMS()
 
     init {
         if (this::class.java.getAnnotation(ModuleInfo::class.java) == null) {

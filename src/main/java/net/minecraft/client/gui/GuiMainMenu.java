@@ -10,7 +10,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import fr.litarvan.openauth.microsoft.MicrosoftAuthResult;
+import fr.litarvan.openauth.microsoft.MicrosoftAuthenticator;
+import fr.litarvan.openauth.microsoft.model.response.MinecraftProfile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -24,6 +29,7 @@ import net.minecraft.realms.RealmsBridge;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Session;
 import net.minecraft.world.demo.DemoWorldServer;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
@@ -194,6 +200,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, I18n.format("menu.options", new Object[0])));
         this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit", new Object[0])));
         this.buttonList.add(new GuiButtonLanguage(5, this.width / 2 - 124, j + 72 + 12));
+        this.buttonList.add(new GuiButton(900, this.width / 2 - 100, j + 72 + 12 + 24, 98, 20, "Login"));
 
         synchronized (this.threadLock)
         {
@@ -304,6 +311,21 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
                 this.mc.displayGuiScreen(guiyesno);
             }
         }
+
+        if (button.id == 900) {
+            try {
+                MicrosoftAuthenticator authenticator = new MicrosoftAuthenticator();
+                CompletableFuture<MicrosoftAuthResult> authResultCompletableFuture = authenticator.loginWithAsyncWebview();
+                MicrosoftAuthResult result = authResultCompletableFuture.get();
+
+                MinecraftProfile profile = result.getProfile();
+                Session session = new Session(profile.getName(), profile.getId(), result.getAccessToken(), "mojang");
+                Minecraft.getMinecraft().session = session;
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private void switchToRealms()
