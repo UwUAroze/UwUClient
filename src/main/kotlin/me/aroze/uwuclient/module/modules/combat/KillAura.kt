@@ -5,6 +5,7 @@ import me.aroze.uwuclient.event.events.EventUpdate
 import me.aroze.uwuclient.module.Module
 import me.aroze.uwuclient.module.ModuleInfo
 import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityLivingBase
 import net.minecraft.network.play.client.C02PacketUseEntity
 import net.minecraft.util.MathHelper
 import org.lwjgl.input.Keyboard
@@ -22,6 +23,7 @@ object KillAura : Module() {
     @EventInfo
     fun onUpdate(event: EventUpdate) {
         val entity = getClosestEntity() ?: return
+        if (entity !is EntityLivingBase) return
         if (timer.hasReached(1000 / 10)) {
             mc.thePlayer.swingItem()
             mc.thePlayer.sendQueue.addToSendQueue(C02PacketUseEntity(entity, C02PacketUseEntity.Action.ATTACK))
