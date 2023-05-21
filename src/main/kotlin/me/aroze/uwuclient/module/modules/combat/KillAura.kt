@@ -66,10 +66,16 @@ object KillAura : Module() {
 //    }
 
     fun getClosestEntity() : Entity? {
+        var closestEntity: Entity? = null
+        var closestEntityDistance = 3.0f
         for (entity in mc.theWorld.loadedEntityList) {
-            if (entity != mc.thePlayer && entity.isEntityAlive && mc.thePlayer.getDistanceToEntity(entity) <= 3.0f) return entity
+            val dist = mc.thePlayer.getDistanceToEntity(entity)
+            if (entity != mc.thePlayer && entity.isEntityAlive && dist <= closestEntityDistance) {
+                closestEntityDistance = dist
+                closestEntity = entity
+            }
         }
-        return null
+        return closestEntity
     }
 
 }
