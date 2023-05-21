@@ -1,6 +1,7 @@
 package me.aroze.uwuclient.module
 
 import me.aroze.uwuclient.module.hud.Hud
+import me.aroze.uwuclient.module.modules.combat.AimAssist
 import me.aroze.uwuclient.module.modules.combat.Autoclicker
 import me.aroze.uwuclient.module.modules.combat.KillAura
 import me.aroze.uwuclient.module.modules.misc.UwUChat
@@ -18,7 +19,7 @@ object ModuleManager {
         register(
             Hud, UwUChat,
             VanillaFlight, NoFall, Sprint, Strafe, Speed,
-            Autoclicker, KillAura
+            Autoclicker, KillAura, AimAssist
         )
     }
 
